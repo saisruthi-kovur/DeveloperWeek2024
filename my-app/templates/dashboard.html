@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Dashboard</title>
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Socket.io for real-time communication -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+        <style>
+            h1 {text-align: center;}
+            h2 {text-align: center;}
+            body {
+                padding: 20px;
+                font-family: 'Poppins', sans-serif;
+                background-color: #f4f5f7;
+                color: #333;
+            }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            width: 80vw;
+        }
+            .jumbotron {
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                padding: 40px;
+                margin-top: 50px;
+            }
+            h1, h3 {
+                font-weight: 700;
+                color: #375a7f;
+            }
+            .lead, p, ul {
+                font-weight: 400;
+                color: #444;
+            }
+            .jumbotron .lead {
+                color: #555;
+                font-weight: 600;
+            }
+            .jumbotron ul {
+                list-style-type: none;
+                padding: 0;
+            }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Real-time Dashboard</h1>
+            <h2 class="lead">This is a real-time dashboard showing live data updates.</h2>
+        </div>
+        
+        <!-- Event Counter -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h3>Total Events: <span id="totalEvents">0</span></h3>
+            </div>
+        </div>
+        
+        <!-- Chart Container -->
+        <div class="row">
+            <div class="col">
+                <div class="chart-container">
+                    <canvas id="dataChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+        const dataChartCtx = document.getElementById('dataChart').getContext('2d');
+        let dataChart = new Chart(dataChartCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Random Data',
+                    data: [],
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                maintainAspectRatio: false
+            }
+        });
+
+        socket.on('update', function(data) {
+            const now = new Date();
+            const timeString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+            dataChart.data.labels.push(timeString);
+            dataChart.data.datasets[0].data.push(data.value);
+            if (dataChart.data.labels.length > 20) {
+                // Remove the oldest data point
+                dataChart.data.labels.shift();
+                dataChart.data.datasets[0].data.shift();
+            }
+            dataChart.update();
+            
+            // Update the total events counter
+            document.getElementById('totalEvents').textContent = data.count;
+        });
+    </script>
+</body>
+</html>
