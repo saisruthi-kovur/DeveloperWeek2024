@@ -27,8 +27,8 @@ The implementation of this project spans several key areas:
 To run this project locally, you'll need to follow these steps:
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/your-username/real-time-dashboard.git
-    cd real-time-dashboard
+    git clone https://github.com/saisruthi-kovur/Convex-DeveloperWeek2024.git
+    cd Convex-DeveloperWeek2024
     ```
 2. **Install Dependencies**:
     - Python dependencies:
