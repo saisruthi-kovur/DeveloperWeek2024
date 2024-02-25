@@ -29,6 +29,7 @@ To run this project locally, you'll need to follow these steps:
     ```bash
     git clone https://github.com/saisruthi-kovur/Convex-DeveloperWeek2024.git
     cd Convex-DeveloperWeek2024
+    cd my-app
     ```
 2. **Install Dependencies**:
     - Python dependencies:
@@ -43,7 +44,7 @@ To run this project locally, you'll need to follow these steps:
     - Create a `.env` file in the root directory and populate it with the necessary environment variables, such as `CONVEX_URL`.
 4. **Start the Server**:
     ```bash
-    python dashboard.py
+    python3 dashboard.py
     ```
 5. **Access the Dashboard**:
     - Open your web browser and navigate to `http://localhost:5000` to view the homepage and proceed to the dashboard.
