@@ -17,9 +17,9 @@ In today's digital age, where data is constantly being generated, the ability to
 
 ### How I Implemented It
 The implementation of this project spans several key areas:
-1. **Backend Setup with Convex**[^1]: Utilizing Convex for its real-time database capabilities and scalable architecture, the backend is designed to handle incoming data streams, process them, and push updates to connected clients in real time.
+1. **Backend Setup with Convex**[^1]: Utilizing Convex for its real-time database capabilities and scalable architecture, the backend is designed to handle incoming data streams, process them, and push updates to connected clients in real-time.
 2. **Data Processing**: Python scripts, including `ai_data_processing.py` and `generate_sample_data.py`, simulate real-time data generation and processing to demonstrate potential analytics and AI integrations.
-3. **Real-time Communication**: Flask-SocketIO establishes a WebSocket connection between the server and the client, enabling the dashboard to update in real time without requiring page refreshes.
+3. **Real-time Communication**: Flask-SocketIO establishes a WebSocket connection between the server and the client, enabling the dashboard to update in real-time without requiring page refreshes.
 4. **Frontend Visualization**: The frontend is developed using HTML, CSS, and JavaScript, with the integration of Bootstrap for styling and Chart.js for dynamic charting, ensuring the dashboard is both visually appealing and user-friendly.
 5. **User Interface Design**: Special attention has been paid to UI/UX design to ensure the dashboard is intuitive and accessible for users with varying levels of technical expertise.
 
@@ -28,8 +28,7 @@ To run this project locally, you'll need to follow these steps:
 1. **Clone the Repository**:
     ```bash
     git clone https://github.com/saisruthi-kovur/Convex-DeveloperWeek2024.git
-    cd Convex-DeveloperWeek2024
-    cd my-app
+    cd Real-time-Data-Visualization
     ```
 2. **Install Dependencies**:
     - Python dependencies:
@@ -44,6 +43,8 @@ To run this project locally, you'll need to follow these steps:
     - Create a `.env` file in the root directory and populate it with the necessary environment variables, such as `CONVEX_URL`.
 4. **Start the Server**:
     ```bash
+    cd my-app
+    cd scripts
     python3 dashboard.py
     ```
 5. **Access the Dashboard**:
